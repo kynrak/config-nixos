@@ -161,7 +161,7 @@
       }
       # Go to definition
       {
-        action = ":lua vim.lsp.buf.definition()<CR>";
+        action = "<Cmd>vim.lsp.buf.definition()<CR>";
         key = "<leader>gd";
         options = {
           silent = true;
@@ -171,7 +171,7 @@
       }
       # Go to references
       {
-        action = ":lua vim.lsp.buf.references()<CR>";
+        action = "<Cmd>vim.lsp.buf.references()<CR>";
         key = "<leader>gr";
         options = {
           silent = true;

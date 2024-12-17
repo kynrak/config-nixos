@@ -8,6 +8,7 @@
       ./nvim/options.nix
       ./nvim/plugins.nix
       ./nvim/completion.nix
+      ./kitty/kitty.nix
     ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -79,9 +80,8 @@
     # EDITOR = "emacs";
   };
 
-  programs.nixvim = { 
-    enable = true; 
-  };
+  programs.nixvim.enable = true; 
+  programs.kitty.enable = true; 
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
