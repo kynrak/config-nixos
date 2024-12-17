@@ -1,6 +1,14 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs,  ... }:
 
 {
+  imports =
+    [ 
+      inputs.nixvim.homeManagerModules.nixvim
+      ./nvim/keymaps.nix
+      ./nvim/options.nix
+      ./nvim/plugins.nix
+      ./nvim/completion.nix
+    ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "luketeo";
@@ -69,6 +77,10 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+  };
+
+  programs.nixvim = { 
+    enable = true; 
   };
 
   # Let Home Manager install and manage itself.
