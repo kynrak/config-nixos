@@ -56,6 +56,11 @@
   #   pulse.enable = true;
   # };
 
+  virtualisation.docker.enable = true; 
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
@@ -64,7 +69,7 @@
     isNormalUser = true;
     home = "/home/luketeo";
     description = "Luke Teo"; 
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
   };
   
   home-manager = { 
