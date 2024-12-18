@@ -14,6 +14,8 @@
       providers.wl-copy.enable = true;
     };
 
+    colorscheme = "lunaperche"; 
+
     opts = {
       updatetime = 100; # Faster completion
 
