@@ -9,6 +9,7 @@
       ./nvim/plugins.nix
       ./nvim/completion.nix
       ./kitty/kitty.nix
+      ./thunderbird/thunderbird.nix
     ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -85,6 +86,7 @@
   programs.nixvim.enable = true; 
   programs.kitty.enable = true; 
   programs.lazygit.enable = true; 
+  programs.thunderbird.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
