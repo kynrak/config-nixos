@@ -6,7 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];
@@ -15,63 +15,42 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Network configuration
   networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
 
-  # Set your time zone.
+  # System Settings
   time.timeZone = "Asia/Tokyo";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  # Enable the X11 windowing system.
+  # Gnome DE settings
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true; 
+  services.libinput.enable = true; # Touch pad
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
+  # Docker configuration
   virtualisation.docker.enable = true; 
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;
   };
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User account
   users.users.luketeo = {
     isNormalUser = true;
     home = "/home/luketeo";
     description = "Luke Teo"; 
     extraGroups = [ "wheel" "networkmanager" "docker" ];
+    shell = pkgs.zsh;
   };
   
+  # Home Manager setup 
   home-manager = { 
     extraSpecialArgs = { inherit inputs; }; 
     users = { 
@@ -79,14 +58,15 @@
     };
   }; 
 
-  programs.firefox.enable = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # Must have system packages
   environment.systemPackages = with pkgs; [
     vim nano neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget curl git htop
   ];
+
+  # General Programs to have -- rest should be managed by home manager 
+  programs.firefox.enable = true; 
+  programs.zsh.enable = true; 
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

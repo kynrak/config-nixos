@@ -29,13 +29,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # Dev Tools 
-    go 
-    go-task 
-    nodejs
-    bun
-    python3
-
     # Unix Tools 
     ncdu 
     ripgrep 
@@ -84,6 +77,7 @@
     # EDITOR = "emacs";
   };
 
+  programs.firefox.enable = true; 
   programs.nixvim.enable = true; 
   programs.kitty.enable = true; 
   programs.lazygit.enable = true; 

@@ -98,6 +98,16 @@
           desc = "Quit All";
         };
       }
+      # Exit terminal interface 
+      { 
+        action = "<c-\\><c-n>"; 
+        key = ";t"; 
+        mode = "t"; 
+        options = { 
+          silent = true; 
+          desc = "Enter normal mode"; 
+        };
+      }
       # Windows 
       {
         action = "<C-W>p";
