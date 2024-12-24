@@ -6,13 +6,12 @@
     };
 
     # Keymaps
-    keymaps =
-    [
+    keymaps = [
       # Move to window using <ctrl> hjkl keys
       {
         action = "<C-w>h";
         key = "<C-h>";
-	mode = "n"; 
+        mode = "n";
         options = {
           silent = true;
           noremap = false;
@@ -22,7 +21,7 @@
       {
         action = "<C-w>j";
         key = "<C-j>";
-	mode = "n"; 
+        mode = "n";
         options = {
           silent = true;
           noremap = false;
@@ -32,7 +31,7 @@
       {
         action = "<C-w>k";
         key = "<C-k>";
-	mode = "n"; 
+        mode = "n";
         options = {
           silent = true;
           noremap = false;
@@ -42,7 +41,7 @@
       {
         action = "<C-w>l";
         key = "<C-l>";
-	mode = "n"; 
+        mode = "n";
         options = {
           silent = true;
           noremap = false;
@@ -53,7 +52,7 @@
       {
         action = "<cmd>noh<cr><esc>";
         key = "<esc>";
-	mode = [ "n" "i" ]; 
+        mode = ["n" "i"];
         options = {
           silent = true;
           desc = "Escape and Clear hlsearch";
@@ -63,7 +62,7 @@
       {
         action = "<cmd>w<cr><esc>";
         key = "<C-s>";
-	mode = [ "n" "i" "x" "s" ]; 
+        mode = ["n" "i" "x" "s"];
         options = {
           silent = true;
           desc = "Save File";
@@ -73,7 +72,7 @@
       {
         action = "<gv";
         key = "<";
-	mode = "v"; 
+        mode = "v";
         options = {
           silent = true;
           desc = "Indent Left";
@@ -82,7 +81,7 @@
       {
         action = ">gv";
         key = ">";
-	mode = "v"; 
+        mode = "v";
         options = {
           silent = true;
           desc = "Indent Right";
@@ -92,60 +91,60 @@
       {
         action = "<cmd>qa<cr>";
         key = "<leader>qq";
-	mode = "n"; 
+        mode = "n";
         options = {
           silent = true;
           desc = "Quit All";
         };
       }
-      # Exit terminal interface 
-      { 
-        action = "<c-\\><c-n>"; 
-        key = ";t"; 
-        mode = "t"; 
-        options = { 
-          silent = true; 
-          desc = "Enter normal mode"; 
+      # Exit terminal interface
+      {
+        action = "<c-\\><c-n>";
+        key = ";t";
+        mode = "t";
+        options = {
+          silent = true;
+          desc = "Enter normal mode";
         };
       }
-      # Windows 
+      # Windows
       {
         action = "<C-W>p";
         key = "<leader>ww";
-	mode = "n"; 
+        mode = "n";
         options = {
           silent = true;
-	  noremap = false;
+          noremap = false;
           desc = "Other Window";
         };
       }
       {
         action = "<C-W>c";
         key = "<leader>wd";
-	mode = "n"; 
+        mode = "n";
         options = {
           silent = true;
-	  noremap = false;
+          noremap = false;
           desc = "Delete Window";
         };
       }
       {
         action = "<C-W>s";
         key = "<leader>-";
-	mode = "n"; 
+        mode = "n";
         options = {
           silent = true;
-	  noremap = false;
+          noremap = false;
           desc = "Split Window Below";
         };
       }
       {
         action = "<C-W>v";
         key = "<leader>|";
-	mode = "n"; 
+        mode = "n";
         options = {
           silent = true;
-	  noremap = false;
+          noremap = false;
           desc = "Split Window Right";
         };
       }
@@ -153,7 +152,7 @@
       {
         action = "<esc>";
         key = "jj";
-	mode = "i"; 
+        mode = "i";
         options = {
           silent = true;
           desc = "Exit insert mode";

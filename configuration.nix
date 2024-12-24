@@ -1,15 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -17,25 +19,24 @@
 
   # Network configuration
   networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-  nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # System Settings
   time.timeZone = "Asia/Tokyo";
-
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Gnome DE settings
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true; 
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.libinput.enable = true; # Touch pad
 
-
   # Docker configuration
-  virtualisation.docker.enable = true; 
+  virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;
@@ -45,28 +46,33 @@
   users.users.luketeo = {
     isNormalUser = true;
     home = "/home/luketeo";
-    description = "Luke Teo"; 
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    description = "Luke Teo";
+    extraGroups = ["wheel" "networkmanager" "docker"];
     shell = pkgs.zsh;
   };
-  
-  # Home Manager setup 
-  home-manager = { 
-    extraSpecialArgs = { inherit inputs; }; 
-    users = { 
-        "luketeo" = import ./home.nix;
+
+  # Home Manager setup
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    users = {
+      "luketeo" = import ./home.nix;
     };
-  }; 
+  };
 
   # Must have system packages
   environment.systemPackages = with pkgs; [
-    vim nano neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget curl git htop
+    vim
+    nano
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    curl
+    git
+    htop
   ];
 
-  # General Programs to have -- rest should be managed by home manager 
-  programs.firefox.enable = true; 
-  programs.zsh.enable = true; 
+  # General Programs to have -- rest should be managed by home manager
+  programs.firefox.enable = true;
+  programs.zsh.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -110,6 +116,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }
-

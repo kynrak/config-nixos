@@ -1,9 +1,9 @@
-{ 
-  programs.thunderbird = { 
-    profiles = { 
-      luketeo = { 
-        isDefault = true; 
+{
+  programs.thunderbird = {
+    profiles = {
+      luketeo = {
+        isDefault = true;
       };
     };
   };
-} 
+}

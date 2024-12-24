@@ -9,15 +9,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = { 
-      url = "github:nix-community/nixvim"; 
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux"; 
+      system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
         ./configuration.nix

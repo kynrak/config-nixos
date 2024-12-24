@@ -1,17 +1,19 @@
-{ config, pkgs, inputs,  ... }:
-
 {
-  imports =
-    [ 
-      inputs.nixvim.homeManagerModules.nixvim
-      ./nvim/keymaps.nix
-      ./nvim/options.nix
-      ./nvim/plugins.nix
-      ./nvim/completion.nix
-      ./kitty/kitty.nix
-      ./thunderbird/thunderbird.nix
-      ./zsh/zsh.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+    ./nvim/keymaps.nix
+    ./nvim/options.nix
+    ./nvim/plugins.nix
+    ./nvim/completion.nix
+    ./kitty/kitty.nix
+    ./thunderbird/thunderbird.nix
+    ./zsh/zsh.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "luketeo";
@@ -29,22 +31,37 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # Unix Tools 
-    ncdu 
-    ripgrep 
-    fd 
-    tree 
-    fzf 
-    eza 
-    bat 
+    # Unix Tools
+    ncdu
+    ripgrep
+    fd
+    tree
+    fzf
+    eza
+    bat
 
-    # Network 
-    nmap 
+    # Network
+    nmap
+
+    # LSP
+    nixd
+    alejandra
+    gopls
+    gofumpt
+    golangci-lint
+    golines
+    goimports-reviser
+    pyright
+    python312Packages.python-lsp-server
+    biome
+    vtsls
+    lua-language-server
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    ".ssh/allowed_signers".text = "${config.programs.git.userEmail} ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOb+kdNBe1dgJktgI4gqokCbNf3J/yzwyQ5qA857fkS";
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -77,12 +94,27 @@
     # EDITOR = "emacs";
   };
 
-  programs.firefox.enable = true; 
-  programs.nixvim.enable = true; 
-  programs.kitty.enable = true; 
-  programs.lazygit.enable = true; 
+  programs.firefox.enable = true;
+  programs.nixvim.enable = true;
+  programs.kitty.enable = true;
+  programs.lazygit.enable = true;
   programs.thunderbird.enable = true;
-  programs.zsh.enable = true; 
+  programs.zsh.enable = true;
+  programs.chromium = {
+    enable = true;
+    package = pkgs.brave;
+  };
+  programs.git = {
+    enable = true;
+    userEmail = "67887422+kynrak@users.noreply.github.com";
+    userName = "luke-teo";
+    extraConfig = {
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+      user.signingkey = "~/.ssh/id_ed25519.pub";
+    };
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
