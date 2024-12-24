@@ -191,7 +191,7 @@
       # lazy git dashboard
       {
         action = ":LazyGit<CR>";
-        key = "<leader>lg";
+        key = "<leader>gg";
         options = {
           silent = true;
           noremap = true;
