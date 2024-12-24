@@ -106,7 +106,7 @@
   };
   programs.git = {
     enable = true;
-    userEmail = "67887422+kynrak@users.noreply.github.com";
+    userEmail = "67887422+lukteo@users.noreply.github.com";
     userName = "luke-teo";
     extraConfig = {
       commit.gpgsign = true;
