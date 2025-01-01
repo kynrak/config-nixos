@@ -56,6 +56,14 @@
     biome
     vtsls
     lua-language-server
+
+    # Dev Tools
+    bun
+    nodejs
+    go
+    gcc
+    go-task
+    python3
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
