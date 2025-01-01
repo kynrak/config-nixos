@@ -64,6 +64,10 @@
     gcc
     go-task
     python3
+
+    # Nerd Fonts
+    nerd-fonts.terminess-ttf
+    nerd-fonts.jetbrains-mono
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -123,6 +127,8 @@
       user.signingkey = "~/.ssh/id_ed25519.pub";
     };
   };
+
+  fonts.fontconfig.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
