@@ -28,7 +28,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Gnome DE settings
+  # KDE Plasma 6 settings
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -51,6 +51,9 @@
     shell = pkgs.zsh;
   };
 
+  # Font's handling
+  fonts.fontDir.enable = true;
+
   # Home Manager setup
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
@@ -71,7 +74,6 @@
   ];
 
   # General Programs to have -- rest should be managed by home manager
-  programs.firefox.enable = true;
   programs.zsh.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
